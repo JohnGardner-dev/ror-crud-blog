@@ -146,3 +146,37 @@ Here's the logic that's happening:
 6. The ERB code in the view is evaluated to output HTML
 7. The server sends a response containing the HTML back to the browser
 
+## CRUDit Where CRUDit Is Due
+
+### Showing a Single Article
+
+* Create new route:
+`get "/articles/:id", to: "articles#show"
+* Add `show` action to controller:
+```
+def show
+  @article = Article.find(params[:id])
+end
+```
+* Create `show` view:
+`app/views/articles/show.html.erb`
+with contents:
+```
+<h1><%= @article.title %></h1>
+
+<p><%= @article.body %></p>
+```
+* Link each article's title in `app/views/articles/index.html.erb` to its detail page:
+```
+<h1>Articles</h1>
+
+<ul>
+  <% @articles.each do |article| %>
+    <li>
+      <a href="/articles/<%= article.id %>">
+        <%= article.title %>
+      </a>
+    </li>
+  <% end %>
+</ul>
+```
