@@ -180,3 +180,6 @@ with contents:
   <% end %>
 </ul>
 ```
+
+### Resourceful Routing
+
