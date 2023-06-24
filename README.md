@@ -56,3 +56,44 @@ We do not have to have something like `require "application_controller"` because
 We only need `require` calls for two cases:
 * To load files under the `lib/` directory
 * To load gem dependencies that have `require: false` in the `Gemfile`
+
+
+## Generating a Model and Database Migrations
+
+### Steps:
+
+* To create a model, we'll use a generator commnand again:
+  * `bin/rails generate model Article title:string body:text`
+    * `bin/rails` is the configuration directory
+    * `generate model` is what generates the model
+    * `Article` is the name of our model
+    * `title:string` tells our db migrations to create a db column called `title` with a type `string`
+    * `body:text` tells our db migrations to create a db column called `body` with a type `text`
+  * This command creates a "migration file" and a "model file"
+    * migration file: `db/migrate/<timestamp>_create_articles.rb`
+    * model file: `app/models/article.rb`
+
+### Migration File
+
+```
+class CreateArticles < ActiveRecord::Migration[7.0]
+  def change
+    create_table :articles do |t|
+      t.string :title
+      t.text :body
+
+      t.timestamps
+    end
+  end
+end
+```
+* the call to `create_table` specifies how the `articles` table should be constructed
+* `t.string :title` creates a column of type `string` named "title"
+* `t.text :body` creates a column of type `text` named "body"
+* `t.timestamps` is created automatically and creates two additional columns:
+  * `created_at` and
+  * `updated_at`
+  * Rails will manage these columns by itself
+
+Next, run the migration: `bin/rails db:migrate`
+
