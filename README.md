@@ -97,3 +97,22 @@ end
 
 Next, run the migration: `bin/rails db:migrate`
 
+### Using a Model to Interact w/ the DB
+
+To create an instance of our model and interact with it, we need to use the Rails Console:
+* `bin/rails console`
+Now that we're in the console, we can create initialize a new `Article` object:
+* `article = Article.new(title: "Hello Rails", body: "I am on Rails!")`
+* `article` is the variable we're assigning our new `Article` object to
+* `Article.new(...)` creates a new instance of the `Article` object
+* `title: "Hello Rails"` sets the `title` column to the string `"Hello Rails"`
+* `body: "I am on Rails!"` sets the `body` column to the text `"I am on Rails!"`
+IMPORTANT: All we did was initialized the object. At this point, it is only available within the console. We need to call `save` in order for it to be saved to our db:
+* `article.save`
+Now, when we type `article` in our console, it will return the Article object we created and assigned to the `article` variable.
+To fetch this Article from the db, we can call `find` on the model and pass the `id` as an arguement:
+* `Article.find(1)`
+And, when we want to fetch ALL Articles from the db, we can call `all` on the model:
+* `Article.all`
+* This method returns an `ActiveRecord::Relation` object which we can think of as an superpowered `array`
+  * These return objects look very similar when there's only one instance of the model, however the `ActiveRecord::Relation` object is surrounded by brackets `[]` to denote it's an array
