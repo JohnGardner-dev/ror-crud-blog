@@ -116,3 +116,33 @@ And, when we want to fetch ALL Articles from the db, we can call `all` on the mo
 * `Article.all`
 * This method returns an `ActiveRecord::Relation` object which we can think of as an superpowered `array`
   * These return objects look very similar when there's only one instance of the model, however the `ActiveRecord::Relation` object is surrounded by brackets `[]` to denote it's an array
+
+### Showing a List of Articles
+
+In our controller, we'll change our `index` action to fetch all Articles from our db:
+* inside the `index` action:
+  * `@articles = Article.all`
+Now, controller instance variables can be accessed by the view. So, we'll change our `views/articles/index` to the following:
+```
+<h1>Articles</h1>
+
+<ul>
+  <% @articles.each do |article| %>
+    <li>
+      <%= article.title %>
+    </li>
+  <% end %>
+</ul>
+```
+This code is a combination of `HTML` and something called `ERB`. `ERB` stands for "Embedded Ruby". In here, are two `ERB tags`, `<% %>` and `<%=  %>`
+* `<%  %>` means "evaluate the enclosed Ruby code"
+* `<%=  %>` means "evaluate the enclosed Ruby code AND output the value it returns"
+Here's the logic that's happening:
+1. The browser makes a `GET` request to our root `localhost:3000`
+2. Our Rails appication receives that request
+3. The Rails router maps the root route to the index action of ArticlesController
+4. The index action uses the `Article` model to fetch all articles in the database
+5. Rails automatically renders the `app/views/articles/index.html.erb` view
+6. The ERB code in the view is evaluated to output HTML
+7. The server sends a response containing the HTML back to the browser
+
