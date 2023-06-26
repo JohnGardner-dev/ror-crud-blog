@@ -18,6 +18,7 @@ password: secret
 
 ![new article created](public/article%20created.png)
 
+## New Comment
 ![new comment](public/new%20comment.png)
 
 ![new comment submited](public/comment%20created.png)
