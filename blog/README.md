@@ -1,24 +1,23 @@
-# README
+# Ruby on Rails CRUD Blog App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Home Page
+![home page](public/root.png)
 
-Things you may want to cover:
+## User Must be Logged In to Create New Article
 
-* Ruby version
+username: dhh <br>
+password: secret
 
-* System dependencies
+![login screen](public/login.png)
 
-* Configuration
+## New Article
 
-* Database creation
+![new article](public/new%20article.png)
 
-* Database initialization
+![new article filled out](public/new%20article%20filled.png)
 
-* How to run the test suite
+![new article created](public/article%20created.png)
 
-* Services (job queues, cache servers, search engines, etc.)
+![new comment](public/new%20comment.png)
 
-* Deployment instructions
-
-* ...
+![new comment submited](public/comment%20created.png)
